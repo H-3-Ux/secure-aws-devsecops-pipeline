@@ -1,0 +1,26 @@
+# Python temporary files
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Python virtual environments
+.venv/
+venv/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Terraform temporary and sensitive files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+
+# Editor files
+.vscode/
