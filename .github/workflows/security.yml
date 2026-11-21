@@ -39,10 +39,11 @@ jobs:
         run: docker build -t secure-aws-app:scan .
 
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@v0.33.1
-        with:
-          image-ref: secure-aws-app:scan
-          format: table
-          exit-code: '1'
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.65.0 image \
+            --severity HIGH,CRITICAL \
+            --ignore-unfixed \
+            --exit-code 1 \
+            secure-aws-app:scan
