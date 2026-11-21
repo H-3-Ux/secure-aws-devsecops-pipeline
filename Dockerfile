@@ -9,6 +9,11 @@ RUN pip install --no-cache-dir --prefix=/install \
 # Stage 2: Create a lightweight runtime image
 FROM python:3.12-slim
 
+# Install available Debian security updates
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY --from=builder /install /usr/local
