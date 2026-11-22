@@ -1,3 +1,4 @@
+
 name: Terraform Plan
 
 on:
@@ -33,3 +34,8 @@ jobs:
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan -input=false -no-color
+
+      - name: Inspect ECS execution role state
+        if: always()
+        working-directory: terraform
+        run: terraform state show aws_iam_role.ecs_execution
