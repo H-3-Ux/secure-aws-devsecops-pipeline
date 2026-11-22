@@ -31,6 +31,10 @@ jobs:
         working-directory: terraform
         run: terraform init -input=false
 
+      - name: Clear ECS execution role taint
+        working-directory: terraform
+        run: terraform untaint aws_iam_role.ecs_execution
+
       - name: Terraform Plan
         working-directory: terraform
         run: terraform plan -input=false -no-color
